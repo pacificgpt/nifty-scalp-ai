@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nifty Scalp AI</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; background: #0f0f0f; color: #0f0; }
+    .container { max-width: 800px; margin: auto; }
+    input, button { padding: 12px; margin: 10px; font-size: 16px; }
+    .result { margin-top: 20px; padding: 15px; background: #111; border: 1px solid #0f0; border-radius: 8px; }
+    img { max-width: 100%; margin-top: 15px; border: 2px solid #0f0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>⚡ NIFTY SCALP AI</h1>
+  <p>Upload 1m/5m Nifty chart → Get entry, SL, TP in < 3 sec</p>
+
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="chart" accept="image/*" required />
+    <button type="submit">ANALYZE CHART</button>
+  </form>
+
+  <div id="result" class="result" style="display:none"></div>
+</div>
+
+<script>
+document.getElementById('uploadForm').onsubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const res = await fetch('/api/scalp', { method: 'POST', body: formData });
+  const data = await res.json();
+
+  if (data.success) {
+    const r = data.signal;
+    document.getElementById('result').innerHTML = `
+      <h2>${r.action} SCALP SIGNAL</h2>
+      <p><b>Entry:</b> ${r.entry} | <b>SL:</b> ${r.stopLoss} | <b>TP:</b> ${r.target1} → ${r.target2}</b></p>
+      <p><b>R:R = ${r.riskReward}</b> | Confidence: ${r.confidence}%</p>
+      <p><i>${r.note}</i></p>
+      <img src="${data.annotatedChart}?t=${Date.now()}" />
+    `;
+    document.getElementById('result').style.display = 'block';
+  }
+};
+</script>
+</body>
+</html>
