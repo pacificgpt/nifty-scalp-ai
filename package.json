@@ -1,0 +1,33 @@
+{
+  "name": "nifty-scalp-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacificgpt/nifty-scalp-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pacificgpt/nifty-scalp-ai/issues"
+  },
+  "homepage": "https://github.com/pacificgpt/nifty-scalp-ai#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "tesseract.js": "^5.1.0",
+    "sharp": "^0.33.3",
+    "jimp": "^0.22.12",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
