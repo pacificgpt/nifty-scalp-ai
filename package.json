@@ -1,7 +1,7 @@
 {
   "name": "nifty-scalp-ai",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automated Nifty scalping signal generator using OCR and chart image analysis",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
